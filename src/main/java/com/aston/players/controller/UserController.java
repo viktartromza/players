@@ -1,6 +1,6 @@
 package com.aston.players.controller;
 
-import com.aston.players.domain.UserResponse;
+import com.aston.players.domain.dto.UserResponse;
 import com.aston.players.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

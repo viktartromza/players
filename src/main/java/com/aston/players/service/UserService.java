@@ -1,7 +1,6 @@
 package com.aston.players.service;
 
-import com.aston.players.domain.User;
-import com.aston.players.domain.UserResponse;
+import com.aston.players.domain.dto.UserResponse;
 import com.aston.players.mapper.UserMapper;
 import com.aston.players.repository.UserRepository;
 import org.springframework.stereotype.Service;

@@ -18,7 +18,10 @@
     <property name="dialect">org.hibernate.dialect.H2Dialect</property>
 
     <!-- DB schema will be updated if needed -->
-    <property name="hibernate.hbm2ddl.auto">create-drop</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
     <mapping class="com.aston.players.domain.User"/>
+    <mapping class="com.aston.players.domain.Game"/>
+    <mapping class="com.aston.players.domain.Wallet"/>
+    <mapping class="com.aston.players.domain.Comment"/>
   </session-factory>
 </hibernate-configuration>

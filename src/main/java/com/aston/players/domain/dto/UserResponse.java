@@ -1,4 +1,4 @@
-package com.aston.players.domain;
+package com.aston.players.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

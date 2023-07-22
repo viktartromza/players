@@ -1,7 +1,7 @@
 package com.aston.players.mapper;
 
 import com.aston.players.domain.User;
-import com.aston.players.domain.UserResponse;
+import com.aston.players.domain.dto.UserResponse;
 import org.springframework.stereotype.Component;
 
 @Component
