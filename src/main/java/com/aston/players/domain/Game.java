@@ -37,8 +37,7 @@ public class Game {
     @JsonIgnore
     private Set<User> users = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "game_id")
-    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 }

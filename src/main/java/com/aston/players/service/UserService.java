@@ -19,10 +19,10 @@ public class UserService {
     }
 
     public User getUserById(int id) {
-        return userRepository.getUserByID(id);
+        return userRepository.findById(id).get();
     }
 
     public Set<User> getAllUsers() {
-        return new HashSet<>(userRepository.getAllUsers());
+        return new HashSet<>(userRepository.findAll());
     }
 }
