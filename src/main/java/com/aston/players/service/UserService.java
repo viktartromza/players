@@ -1,21 +1,28 @@
 package com.aston.players.service;
 
-import com.aston.players.domain.dto.UserResponse;
-import com.aston.players.mapper.UserMapper;
+import com.aston.players.domain.User;
 import com.aston.players.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    @Autowired
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
     }
 
-    public UserResponse getUserById(int id) {
-        return userMapper.fromUserToUserResponse(userRepository.getUserByID(id));
+    public User getUserById(int id) {
+        return userRepository.getUserByID(id);
+    }
+
+    public Set<User> getAllUsers() {
+        return new HashSet<>(userRepository.getAllUsers());
     }
 }

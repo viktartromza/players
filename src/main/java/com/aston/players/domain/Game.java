@@ -1,11 +1,16 @@
 package com.aston.players.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,20 +19,26 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "games")
 public class Game {
     @Id
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "game_type")
+    private String gameType;
 
     @ManyToMany(mappedBy = "games")
+    @JsonIgnore
     private Set<User> users = new HashSet<>();
 
-    @OneToMany(mappedBy = "games", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "game_id")
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 }

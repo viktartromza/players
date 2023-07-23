@@ -1,25 +1,27 @@
 package com.aston.players.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Data
 @Entity
-@Table(name = "comment")
+@Getter
+@Setter
+@Table(name = "comments")
+@NoArgsConstructor
 public class Comment {
     @Id
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "text")
-    private String text;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Game game;
+    @Column(name = "user_login")
+    private String userLogin;
 
+    @Column(name = "comment_text")
+    private String text;
 }
