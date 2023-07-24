@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -26,6 +28,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@NamedEntityGraph(name = "user_entity-graph", attributeNodes = {@NamedAttributeNode("wallet"),
+        @NamedAttributeNode("games")})
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +42,7 @@ public class User implements Serializable {
     @Column(name = "score")
     private double score;
 
-    @OneToOne (mappedBy = "user", cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn
     private Wallet wallet;
 
