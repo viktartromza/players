@@ -1,6 +1,6 @@
 package com.aston.players.repository;
 
-import com.aston.players.domain.User;
+import com.aston.players.model.domain.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,5 +1,7 @@
-package com.aston.players.domain;
+package com.aston.players.model.domain;
 
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,35 +18,29 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "users")
-@NamedEntityGraph(name = "user_entity-graph", attributeNodes = {@NamedAttributeNode("wallet"),
-        @NamedAttributeNode("games")})
-public class User implements Serializable {
+@Table(name = "games")
+@NamedEntityGraph(name = "game_entity-graph", attributeNodes = {@NamedAttributeNode("users"),
+        @NamedAttributeNode("comments")})
+public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "score")
-    private double score;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn
-    private Wallet wallet;
+    @Column(name = "game_type")
+    private String gameType;
 
     @ManyToMany
             (cascade = {
@@ -54,5 +50,10 @@ public class User implements Serializable {
     @JoinTable(name = "user_game",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id"))
-    private Set<Game> games = new HashSet<>();
+    @JsonManagedReference
+    private Set<User> users = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "game_id")
+    private List<Comment> comments = new ArrayList<>();
 }

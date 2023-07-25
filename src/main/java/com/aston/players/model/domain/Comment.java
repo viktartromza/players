@@ -1,4 +1,4 @@
-package com.aston.players.domain;
+package com.aston.players.model.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -23,9 +23,9 @@
     <property name="hibernate.dbcp.maxIdle">10</property>
     <property name="hibernate.dbcp.minIdle">5</property>
     <property name="hibernate.dbcp.maxWaitMillis">-1</property>
-    <mapping class="com.aston.players.domain.User"/>
-    <mapping class="com.aston.players.domain.Game"/>
-    <mapping class="com.aston.players.domain.Wallet"/>
-    <mapping class="com.aston.players.domain.Comment"/>
+    <mapping class="com.aston.players.model.domain.User"/>
+    <mapping class="com.aston.players.model.domain.Game"/>
+    <mapping class="com.aston.players.model.domain.Wallet"/>
+    <mapping class="com.aston.players.model.domain.Comment"/>
   </session-factory>
 </hibernate-configuration>
