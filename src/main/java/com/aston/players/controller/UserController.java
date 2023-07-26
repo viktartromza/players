@@ -1,6 +1,5 @@
 package com.aston.players.controller;
 
-import com.aston.players.model.domain.User;
 import com.aston.players.model.dto.request.UserRegistrationRequest;
 import com.aston.players.model.dto.response.UserResponse;
 import com.aston.players.service.UserService;
@@ -35,6 +34,12 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Set<UserResponse>> allUsers() {
         Set<UserResponse> users = userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/lazy")
+    public ResponseEntity<Set<UserResponse>> allUsersLazy() {
+        Set<UserResponse> users = userService.getAllUsersLazy();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

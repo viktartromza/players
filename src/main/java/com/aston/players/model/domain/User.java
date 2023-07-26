@@ -8,7 +8,6 @@ import lombok.Setter;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +26,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-@NamedEntityGraph(name = "user_entity-graph", attributeNodes = {@NamedAttributeNode("wallet"),
-        @NamedAttributeNode("games")})
+@NamedEntityGraph(name = "user_entity-graph", attributeNodes = {@NamedAttributeNode("wallet"),@NamedAttributeNode("games")})
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,12 +39,12 @@ public class User implements Serializable {
     @Column(name = "score")
     private double score;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Wallet wallet;
 
     @ManyToMany
-            (mappedBy = "users", fetch = FetchType.EAGER)
+            (mappedBy = "users")
     @JsonBackReference
     private Set<Game> games = new HashSet<>();
 }
